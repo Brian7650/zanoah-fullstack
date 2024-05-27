@@ -19,6 +19,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default:"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
     }, 
+    isAdmin: {
+        type: Boolean,
+        default:false,
+    },
     }, {timestamps: true}
 );
 
