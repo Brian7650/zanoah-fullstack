@@ -112,7 +112,7 @@ export default function DashComments() {
           {showMore && (
             <button
               onClick={handleShowMore}
-              className='w-full text-teal-500 self-center text-sm py-7'
+              className='w-full text-sky-300 self-center text-sm py-7'
             >
               Show more
             </button>

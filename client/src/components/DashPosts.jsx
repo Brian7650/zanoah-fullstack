@@ -116,14 +116,14 @@ export default function DashPosts() {
                         setShowModal(true);
                         setPostIdToDelete(post._id);
                       }}
-                      className='font-medium text-red-500 hover:underline cursor-pointer'
+                      className='font-medium text-red-400 hover:underline cursor-pointer'
                     >
                       Delete
                     </span>
                   </Table.Cell>
                   <Table.Cell>
                     <Link
-                      className='text-teal-500 hover:underline'
+                      className='text-sky-500 hover:underline'
                       to={`/update-post/${post._id}`}
                     >
                       <span>Edit</span>
@@ -136,7 +136,7 @@ export default function DashPosts() {
           {showMore && (
             <button
               onClick={handleShowMore}
-              className='w-full text-teal-500 self-center text-sm py-7'
+              className='w-full text-sky-300 self-center text-sm py-7'
             >
               Show more
             </button>

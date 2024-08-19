@@ -231,7 +231,7 @@ export default function DashProfile() {
         />
         <Button
           type='submit'
-          gradientDuoTone='purpleToBlue'
+          className='bg-sky-300'
           outline
           disabled={loading || imageFileUploading}
         >
@@ -241,15 +241,14 @@ export default function DashProfile() {
           <Link to={'/create-post'}>
             <Button
               type='button'
-              gradientDuoTone='purpleToPink'
-              className='w-full'
+              className='w-full bg-sky-300'
             >
               Create a post
             </Button>
           </Link>
         )}
       </form>
-      <div className='text-red-500 flex justify-between mt-5'>
+      <div className='text-red-400 flex justify-between mt-5'>
         <span onClick={() => setShowModal(true)} className='cursor-pointer'>
           Delete Account
         </span>

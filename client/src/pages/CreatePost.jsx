@@ -108,7 +108,7 @@ export default function CreatePost() {
             <option value="comics">Comics</option>
           </Select>
         </div>
-        <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
+        <div className='flex gap-4 items-center justify-between border-4 border-sky-300 border-dotted p-3'>
           <FileInput
             type='file'
             accept='image/*'
@@ -116,7 +116,8 @@ export default function CreatePost() {
           />
           <Button
             type='button'
-            gradientDuoTone='purpleToBlue'
+            className='bg-sky-300'
+            // gradientDuoTone='purpleToBlue'
             size='sm'
             outline
             onClick={handleUpdloadImage}
@@ -151,7 +152,7 @@ export default function CreatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' gradientDuoTone='purpleToPink'>
+        <Button type='submit' className='bg-sky-300'>
           Publish
         </Button>
         {publishError && (

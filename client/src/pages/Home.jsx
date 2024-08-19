@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import CallToAction from '../components/CallToAction';
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 
@@ -23,7 +22,7 @@ export default function Home() {
         </p>
         <Link
           to='/search'
-          className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'
+          className='text-xs sm:text-sm text-sky-300 font-bold hover:underline'
         >
           View all posts
         </Link>
@@ -43,7 +42,7 @@ export default function Home() {
             </div>
             <Link
               to={'/search'}
-              className='text-lg text-teal-500 hover:underline text-center'
+              className='text-lg text-sky-500 hover:underline text-center'
             >
               View all posts
             </Link>
