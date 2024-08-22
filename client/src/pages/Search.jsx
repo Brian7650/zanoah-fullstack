@@ -132,6 +132,7 @@ export default function Search() {
             >
               <option value="uncategorized">Select a category</option>
             <option value="Gaming">Gaming</option>
+            <option value="Gaming">Coding</option>
             <option value="Tech">Tech</option>
             <option value="Comics">Comics</option>
             </Select>
