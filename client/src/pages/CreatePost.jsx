@@ -118,7 +118,6 @@ export default function CreatePost() {
           <Button
             type='button'
             className='bg-sky-300'
-            // gradientDuoTone='purpleToBlue'
             size='sm'
             outline
             onClick={handleUpdloadImage}
