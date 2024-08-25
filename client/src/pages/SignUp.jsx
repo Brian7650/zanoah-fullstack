@@ -43,7 +43,7 @@ export default function SignUp() {
         {/* left */}
         <div className='flex-1'>
           <Link to='/' className='font-bold dark:text-white text-4xl'>
-            <span className='px-2 py-1 bg-sky-300 hover:bg-sky-200 rounded-lg text-white'>
+            <span className='px-2 py-1 bg-sky-500 hover:bg-sky-500 rounded-lg text-white'>
               Zanoah
             </span>
             Blog
@@ -85,7 +85,7 @@ export default function SignUp() {
               />
             </div>
             <Button
-              className='bg-sky-300 hover:bg-sky-200'
+              className='bg-sky-300 hover:bg-sky-500'
               type='submit'
               disabled={loading}
             >

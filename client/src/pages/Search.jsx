@@ -130,11 +130,11 @@ export default function Search() {
               value={sidebarData.category}
               id='category'
             >
-              <option value="uncategorized">Select a category</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Gaming">Coding</option>
-            <option value="Tech">Tech</option>
-            <option value="Comics">Comics</option>
+            <option value="uncategorized">Select a category</option>
+            <option value="gaming">Gaming</option>
+            <option value="coding">Coding</option>
+            <option value="tech">Tech</option>
+            <option value="comics">Comics</option>
             </Select>
           </div>
           <Button type='submit' outline className='bg-sky-300'>

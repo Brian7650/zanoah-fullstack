@@ -15,9 +15,6 @@ export default function FooterComponent() {
               <span className='px-2 py-1 text-stone-500'>
                 Zanoah Media
               </span>
-              {/* <span className='px-2 py-1 text-blue-500'>
-                Blog
-              </span> */}
             </Link>
           </div>
           <div className='grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6'>

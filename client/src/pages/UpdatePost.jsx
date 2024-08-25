@@ -131,11 +131,12 @@ export default function UpdatePost() {
           >
             <option value="uncategorized">Select a category</option>
             <option value="gaming">Gaming</option>
+            <option value="coding">Coding</option>
             <option value="tech">Tech</option>
             <option value="comics">Comics</option>
           </Select>
         </div>
-        <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
+        <div className='flex gap-4 items-center justify-between border-4 border-sky-300 border-dotted p-3'>
           <FileInput
             type='file'
             accept='image/*'

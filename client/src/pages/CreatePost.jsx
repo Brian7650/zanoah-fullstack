@@ -104,7 +104,7 @@ export default function CreatePost() {
           >
             <option value="uncategorized">Select a category</option>
             <option value="gaming">Gaming</option>
-            <option value="Gaming">Coding</option>
+            <option value="coding">Coding</option>
             <option value="tech">Tech</option>
             <option value="comics">Comics</option>
           </Select>
@@ -152,7 +152,7 @@ export default function CreatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' className='bg-sky-300'>
+        <Button type='submit' className='bg-sky-500'>
           Publish
         </Button>
         {publishError && (

@@ -53,7 +53,7 @@ export default function SignIn() {
         {/* left */}
         <div className='flex-1'>
           <Link to='/' className='font-bold dark:text-white text-4xl'>
-            <span className='px-2 py-1 bg-sky-300 hover:bg-sky-200 rounded-lg text-white'>
+            <span className='px-2 py-1 bg-sky-300 hover:bg-sky-500 rounded-lg text-white'>
               Zanoah
             </span>
             Blog
@@ -85,8 +85,7 @@ export default function SignIn() {
               />
             </div>
             <Button
-              className='bg-sky-300 hover:bg-sky-200'
-              // gradientDuoTone='purpleToPink'
+              className='bg-sky-300 hover:bg-sky-500'
               type='submit'
               disabled={loading}
             >
@@ -103,7 +102,7 @@ export default function SignIn() {
           </form>
           <div className='flex gap-2 text-sm mt-5'>
             <span>Dont have an account?</span>
-            <Link to='/sign-up' className='text-sky-300 '>
+            <Link to='/sign-up' className='text-sky-500 '>
               Sign up
             </Link>
           </div>

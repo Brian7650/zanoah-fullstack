@@ -55,10 +55,6 @@ export default function Header() {
         to='/'
         className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
       >
-        {/* <span className='px-2 py-1 bg-gradient-to-r from-blue-500 via-white-300 to-white rounded-lg text-white'>
-          Zanoah
-        </span>
-        Blog */}
         <ZanoahLogo />
       </Link>
       <form onSubmit={handleSubmit}>
@@ -107,7 +103,7 @@ export default function Header() {
           </Dropdown>
         ) : (
           <Link to='/sign-in'>
-            <Button gradientDuoTone='blueToRed' outline>
+            <Button className='bg-sky-300' outline>
               Sign In
             </Button>
           </Link>
@@ -121,9 +117,6 @@ export default function Header() {
         <Navbar.Link active={path === '/about'} as={'div'}>
           <Link to='/about'>About</Link>
         </Navbar.Link>
-        {/* <Navbar.Link active={path === '/projects'} as={'div'}>
-          <Link to='/projects'>Projects</Link>
-        </Navbar.Link> */}
       </Navbar.Collapse>
     </Navbar>
   );
