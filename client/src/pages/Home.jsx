@@ -18,7 +18,7 @@ export default function Home() {
     <div className=''>
       <div className='flex flex-col items-center justify-center gap-6 p-28 px-3 max-w-6xl mx-auto '>
         <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to Zanoah</h1>
-        <p className='text-gray-100 text-xs sm:text-sm'>
+        <p className='text-gray-500 text-xs sm:text-sm'>
           Here you will find a variety of articles on Gaming, Tech, Arts, Comics and other related topics.
         </p>
         <Link
