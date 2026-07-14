@@ -22,7 +22,10 @@ export default function CreatePost() {
 
   const navigate = useNavigate();
 
-  const handleUpdloadImage = async () => {
+  const handleUpdloadImage = async (e) => {
+    // FIX 1: Explicitly prevent default behavior if triggered inside a form
+    if (e) e.preventDefault(); 
+    
     try {
       if (!file) {
         setImageUploadError('Please select an image');
@@ -33,6 +36,7 @@ export default function CreatePost() {
       const fileName = new Date().getTime() + '-' + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
+      
       uploadTask.on(
         'state_changed',
         (snapshot) => {
@@ -40,7 +44,7 @@ export default function CreatePost() {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setImageUploadProgress(progress.toFixed(0));
         },
-        (error) => {
+        () => {
           setImageUploadError('Image upload failed');
           setImageUploadProgress(null);
         },
@@ -48,7 +52,8 @@ export default function CreatePost() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
             setImageUploadError(null);
-            setFormData({ ...formData, image: downloadURL });
+            setFormData((prev) => ({ ...prev, image: downloadURL })); // FIX 2: Functional state update
+            setFile(null); // FIX 3: Clear file state after successful upload
           });
         }
       );
@@ -58,6 +63,7 @@ export default function CreatePost() {
       console.log(error);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -78,10 +84,11 @@ export default function CreatePost() {
         setPublishError(null);
         navigate(`/post/${data.slug}`);
       }
-    } catch (error) {
+    } catch {
       setPublishError('Something went wrong');
     }
   };
+
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1 className='text-center text-3xl my-7 font-semibold'>Create a post</h1>
@@ -94,12 +101,12 @@ export default function CreatePost() {
             id='title'
             className='flex-1'
             onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
+              setFormData((prev) => ({ ...prev, title: e.target.value }))
             }
           />
           <Select
             onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
+              setFormData((prev) => ({ ...prev, category: e.target.value }))
             }
           >
             <option value="uncategorized">Select a category</option>
@@ -120,8 +127,8 @@ export default function CreatePost() {
             className='bg-sky-300'
             size='sm'
             outline
-            onClick={handleUpdloadImage}
-            disabled={imageUploadProgress}
+            onClick={(e) => handleUpdloadImage(e)} // FIX 4: Explicit event passing
+            disabled={!!imageUploadProgress}
           >
             {imageUploadProgress ? (
               <div className='w-16 h-16'>
@@ -149,7 +156,7 @@ export default function CreatePost() {
           className='h-72 mb-12'
           required
           onChange={(value) => {
-            setFormData({ ...formData, content: value });
+            setFormData((prev) => ({ ...prev, content: value }));
           }}
         />
         <Button type='submit' className='bg-sky-500'>

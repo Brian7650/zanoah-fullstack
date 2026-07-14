@@ -1,5 +1,5 @@
 import { Alert, Button, Modal, ModalBody, TextInput } from 'flowbite-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getDownloadURL,
@@ -36,27 +36,15 @@ export default function DashProfile() {
   const filePickerRef = useRef();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (imageFile) {
-      uploadImage();
-    }
-  }, [imageFile]);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
-      setImageFileUrl(URL.createObjectURL(file));
-    }
-  };
-
-  const uploadImage = async () => {
+  // FIX: Removed 'formData' from dependencies and added functional state update + state clearing
+  const uploadImage = useCallback(async () => {
     setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
+    
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -76,21 +64,37 @@ export default function DashProfile() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
-          setFormData({ ...formData, profilePicture: downloadURL });
+          // 1. Safely update formData using the functional 'prev' state
+          setFormData((prev) => ({ ...prev, profilePicture: downloadURL }));
           setImageFileUploading(false);
+          // 2. Clear the imageFile state to finalize the process and prevent loops
+          setImageFile(null); 
         });
       }
     );
+  }, [imageFile]); 
+
+  useEffect(() => {
+    if (imageFile) uploadImage();
+  }, [imageFile, uploadImage]);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImageFileUrl(URL.createObjectURL(file));
+    }
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
+    
     if (Object.keys(formData).length === 0) {
       setUpdateUserError('No changes made');
       return;
@@ -115,6 +119,7 @@ export default function DashProfile() {
       } else {
         dispatch(updateSuccess(data));
         setUpdateUserSuccess("User's profile updated successfully");
+        setFormData({}); // Clear form changes after a successful update
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
@@ -157,7 +162,7 @@ export default function DashProfile() {
   };
 
   if (!currentUser) {
-    return <div>Loading...</div>;
+    return <div className='flex justify-center items-center min-h-screen'>Loading...</div>;
   }
 
   return (
@@ -249,10 +254,10 @@ export default function DashProfile() {
         )}
       </form>
       <div className='text-red-400 flex justify-between mt-5'>
-        <span onClick={() => setShowModal(true)} className='cursor-pointer'>
+        <span onClick={() => setShowModal(true)} className='cursor-pointer hover:underline'>
           Delete Account
         </span>
-        <span onClick={handleSignout} className='cursor-pointer'>
+        <span onClick={handleSignout} className='cursor-pointer hover:underline'>
           Sign Out
         </span>
       </div>
